@@ -1,2 +1,8 @@
-[phases.setup]
-nixPkgs = ["nodejs_22"]
+FROM node:22.13.1
+
+# Set up your environment
+WORKDIR /app
+COPY . .
+RUN yarn install --frozen-lockfile
+
+CMD ["npm", "run", "start"]

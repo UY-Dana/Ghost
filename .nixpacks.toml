@@ -1,8 +1,9 @@
-FROM node:22.13.1
-
-# Set up your environment
-WORKDIR /app
-COPY . .
-RUN yarn install --frozen-lockfile
-
-CMD ["npm", "run", "start"]
+[phases.install]
+cmds = [
+    "wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash",
+    ". ~/.nvm/nvm.sh",
+    "nvm install 22.13.1",
+    "nvm use 22.13.1",
+    "node -v", # Verify Node.js version
+    "corepack enable && yarn install --frozen-lockfile"
+]
